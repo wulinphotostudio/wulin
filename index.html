@@ -261,11 +261,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <button type="button" onclick="downloadQuoteCardImage()" class="py-3.5 px-4 bg-brandRed hover:bg-brandRed-dark text-white rounded-xl font-bold text-sm shadow-lg flex items-center justify-center space-x-2 transition-all active:scale-[0.98]">
-                        <i class="fa-solid fa-download"></i>
-                        <span data-i18n="btnDownload">下載試算單圖片</span>
-                    </button>
-                    <button type="button" onclick="copyQuoteText()" class="py-3.5 px-4 bg-brandBeige hover:bg-brandBeige-dark text-brandRed rounded-xl font-bold text-sm shadow-md flex items-center justify-center space-x-2 transition-all active:scale-[0.98]">
+                    <button type="button" onclick="copyQuoteText()" class="w-full py-3.5 px-4 bg-brandBeige hover:bg-brandBeige-dark text-brandRed rounded-xl font-bold text-sm shadow-md flex items-center justify-center space-x-2 transition-all active:scale-[0.98]">
                         <i class="fa-solid fa-copy"></i>
                         <span data-i18n="btnCopy">複製文字明細</span>
                     </button>
@@ -391,6 +387,70 @@
         <span id="toastMsg">訊息通知</span>
     </div>
 
+    <!-- FIREBASE INTEGRATION -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAzTG-6S_ONOVTklM47crY9QPUNEunbqEE",
+            authDomain: "wulinphoto-52941.firebaseapp.com",
+            projectId: "wulinphoto-52941",
+            storageBucket: "wulinphoto-52941.firebasestorage.app",
+            messagingSenderId: "449439169901",
+            appId: "1:449439169901:web:3febd391a42adcec01ae64",
+            measurementId: "G-CRX9E1ECZ7"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Define collection and document ID
+        const appId = 'wulin-photo-config';
+        const configDocRef = doc(db, 'artifacts', appId, 'public', 'main_config');
+
+        // Expose save function to the main script
+        window.saveConfigToFirebase = async function(configData) {
+            try {
+                await setDoc(configDocRef, configData);
+                return true;
+            } catch (e) {
+                console.error("Firebase save error", e);
+                return false;
+            }
+        };
+
+        // Initialize Authentication & Snapshot listener
+        async function initFirebase() {
+            try {
+                await signInAnonymously(auth);
+                
+                // Listen to configuration changes in realtime
+                onSnapshot(configDocRef, (docSnap) => {
+                    if (docSnap.exists()) {
+                        if (window.loadConfigFromFirebase) {
+                            window.loadConfigFromFirebase(docSnap.data());
+                        }
+                    }
+                }, (error) => {
+                    console.error("Firestore onSnapshot error:", error);
+                });
+            } catch (error) {
+                console.error("Firebase Auth error:", error);
+            }
+        }
+        
+        initFirebase();
+    </script>
+
+    <!-- MAIN APPLICATION LOGIC -->
     <script>
         const DEFAULT_CONFIG = {
             extraPersonPrice: 400,
@@ -549,6 +609,24 @@
             updateCalculation();
         };
 
+        // Firebase Sync Hook
+        window.loadConfigFromFirebase = function(newConfig) {
+            config = JSON.parse(JSON.stringify(newConfig));
+            
+            resetAddonCounts();
+            applyI18n();
+            renderTimeSlotsDropdown();
+            renderMainPackageButtons();
+            renderClassicThemes();
+            renderDiscountSelect();
+            updateCalculation();
+
+            // Refresh dashboard if it's currently open
+            if (document.getElementById('adminDashboard') && !document.getElementById('adminDashboard').classList.contains('hidden')) {
+                showAdminDashboard();
+            }
+        };
+
         function resetAddonCounts() {
             state.addonCounts = {};
             config.addons.forEach(a => { state.addonCounts[a.id] = 0; });
@@ -634,7 +712,6 @@
                 btn.innerHTML = `<i class="fa-regular ${isSelected ? 'fa-circle-dot' : 'fa-circle'} mr-1.5"></i>${theme.name}`;
                 container.appendChild(btn);
             });
-            // Auto Select First If Invalid
             if (!config.classicThemes.find(t => t.id === state.classicTheme) && config.classicThemes.length > 0) {
                 state.classicTheme = config.classicThemes[0].id;
             }
@@ -657,7 +734,6 @@
             const t = config.uiTexts;
             container.innerHTML = '';
 
-            // Pet Counter (only for selfie)
             if (state.selectedPackageId === 'selfie') {
                 const petBox = document.createElement('div');
                 petBox.className = "p-3.5 bg-brandBeige-light rounded-xl border border-brandBeige flex items-center justify-between";
@@ -677,7 +753,7 @@
                 `;
                 container.appendChild(petBox);
             } else {
-                state.petCount = 0; // reset if not selfie
+                state.petCount = 0;
             }
 
             config.addons.forEach(addon => {
@@ -1054,14 +1130,27 @@ ${t.copyFooterNote}`;
             config.extraPersonPrice = parseFloat(document.getElementById('admExtraPersonPrice').value) || 0;
             config.petPrice = parseFloat(document.getElementById('admPetPrice').value) || 0;
             
-            // Re-sync UI with new texts & configs
+            // Re-sync UI with new texts & configs locally
             applyI18n();
             renderTimeSlotsDropdown();
             renderDiscountSelect();
             updateCalculation();
             
             closeAdminModal();
-            showToast('所有設定已成功儲存並生效！', false);
+            
+            // Check if Firebase hook is available and save
+            if (window.saveConfigToFirebase) {
+                showToast('正在將設定儲存至雲端...', false);
+                window.saveConfigToFirebase(config).then(success => {
+                    if (success) {
+                        showToast('所有設定已成功儲存至雲端並生效！', false);
+                    } else {
+                        showToast('雲端儲存失敗，但已在本地生效，請稍後再試。', true);
+                    }
+                });
+            } else {
+                showToast('所有設定已成功儲存並生效！(僅本地)', false);
+            }
         }
 
         function resetToDefaults() {
@@ -1071,7 +1160,7 @@ ${t.copyFooterNote}`;
             renderTimeSlotsDropdown();
             renderDiscountSelect();
             updateCalculation();
-            showToast('已還原為初始預設設定', false);
+            showToast('已還原為初始預設設定（未上傳雲端）', false);
         }
     </script>
 </body>
