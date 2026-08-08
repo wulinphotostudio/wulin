@@ -88,7 +88,7 @@
                         <span class="w-8 h-8 rounded-full bg-brandRed text-white font-bold text-sm flex items-center justify-center">1</span>
                         <h2 class="text-lg font-bold text-brandRed serif-title" data-i18n="step1Title">預計拍攝日期與時段</h2>
                     </div>
-                    
+                   
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-semibold text-stone-700 mb-1.5" data-i18n="dateLabel">預計拍攝日期 *</label>
@@ -113,9 +113,9 @@
                 <div class="bg-white p-6 rounded-2xl border-2 border-brandBeige shadow-md space-y-4">
                     <div class="flex items-center space-x-3 pb-3 border-b border-brandBeige">
                         <span class="w-8 h-8 rounded-full bg-brandRed text-white font-bold text-sm flex items-center justify-center">2</span>
-                        <h2 class="text-lg font-bold text-brandRed serif-title" data-i18n="step2Title">基本資料與預計拍攝人數</h2>
+                        <h2 class="text-lg font-bold text-brandRed serif-title" data-i18n="step2Title">基本資料</h2>
                     </div>
-                    
+                   
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-semibold text-stone-700 mb-1.5" data-i18n="nameLabel">聯絡姓名 *</label>
@@ -126,28 +126,13 @@
                             <input type="tel" id="inputPhone" data-i18n-ph="phonePlaceholder" oninput="updateCalculation()" class="w-full px-3.5 py-2.5 bg-brandBeige-light rounded-xl text-sm text-charcoal font-medium border border-brandBeige focus:outline-none focus:ring-2 focus:ring-brandRed">
                         </div>
                     </div>
-
-                    <div class="pt-2">
-                        <div class="flex items-center justify-between bg-brandBeige-light p-3.5 rounded-xl border border-brandBeige">
-                            <div>
-                                <div class="font-bold text-sm text-charcoal" data-i18n="countLabel">預計拍攝人數</div>
-                                <div class="text-xs text-stone-600 mt-0.5" id="ruleExtraPersonText"></div>
-                                <div class="text-xs text-brandRed font-semibold mt-0.5"><i class="fa-solid fa-circle-info mr-1"></i><span data-i18n="countNote">3 歲以下不用收費</span></div>
-                            </div>
-                            <div class="flex items-center space-x-3">
-                                <button type="button" onclick="adjustCount('adultCount', -1)" class="w-8 h-8 rounded-lg border border-brandBeige bg-white hover:bg-brandRed hover:text-white font-bold flex items-center justify-center transition-all">-</button>
-                                <span id="displayAdultCount" class="w-6 text-center font-bold text-lg text-brandRed">2</span>
-                                <button type="button" onclick="adjustCount('adultCount', 1)" class="w-8 h-8 rounded-lg border border-brandBeige bg-white hover:bg-brandRed hover:text-white font-bold flex items-center justify-center transition-all">+</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- SECTION 3 -->
                 <div class="bg-white p-6 rounded-2xl border-2 border-brandBeige shadow-md space-y-4">
                     <div class="flex items-center space-x-3 pb-3 border-b border-brandBeige">
                         <span class="w-8 h-8 rounded-full bg-brandRed text-white font-bold text-sm flex items-center justify-center">3</span>
-                        <h2 class="text-lg font-bold text-brandRed serif-title" data-i18n="step3Title">預計選擇的拍攝方式</h2>
+                        <h2 class="text-lg font-bold text-brandRed serif-title" data-i18n="step3Title">預計選擇的拍攝方式與人數</h2>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="mainPackagesGrid"></div>
                     <div class="p-4 rounded-xl bg-brandBeige text-charcoal text-xs leading-relaxed space-y-1.5 shadow-inner" id="mainModeDescBox"></div>
@@ -162,11 +147,11 @@
 
                     <!-- Classic Themes Grid -->
                     <div id="classicThemeBox" class="space-y-3 hidden pb-3 border-b border-brandBeige">
-                        <label class="text-xs font-bold text-stone-700 block" data-i18n="classicThemeLabel">請選擇自拍主題：</label>
+                        <label class="text-xs font-bold text-stone-700 block" data-i18n="classicThemeLabel">請選擇拍攝主題：</label>
                         <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="classicThemeGrid"></div>
                     </div>
 
-                    <!-- Dynamic Add-ons List -->
+                    <!-- Dynamic Addons List -->
                     <div id="dynamicAddonsList" class="space-y-3"></div>
                 </div>
 
@@ -212,14 +197,14 @@
                             <span id="summaryTimeSlot" class="font-bold text-brandRed"></span>
                         </div>
                         <div class="flex justify-between">
-                            <span class="text-stone-500" data-i18n="summaryShootTime">拍攝時間：</span>
-                            <span id="summaryShootingTime" class="font-bold text-brandRed"></span>
+                            <span class="text-stone-500">總共拍攝人數：</span>
+                            <span id="summaryTotalHeadcount" class="font-bold text-brandRed">2 人</span>
                         </div>
                     </div>
 
                     <div class="my-4 p-3 bg-brandRed/10 border border-brandRed/30 rounded-xl grid grid-cols-2 gap-2 text-center text-xs">
                         <div class="border-r border-brandRed/20 pr-2">
-                            <div class="text-stone-600 text-[11px] font-medium" data-i18n="summaryMakeupTime">妝髮預估時間</div>
+                            <div class="text-stone-600 text-[11px] font-medium" data-i18n="summaryMakeupTime">總拍攝時間</div>
                             <div id="summaryMakeupTime" class="font-extrabold text-brandRed text-base mt-0.5"></div>
                         </div>
                         <div>
@@ -271,7 +256,6 @@
         </div>
     </main>
 
-    <!-- ADMIN SYSTEM BACKEND MODAL -->
     <div id="adminModal" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden flex items-center justify-center p-4 overflow-y-auto">
         <div class="bg-white rounded-3xl max-w-4xl w-full shadow-2xl border-2 border-brandRed overflow-hidden my-6">
             
@@ -304,25 +288,26 @@
                     
                     <div class="bg-white p-5 rounded-2xl border border-stone-300 shadow-sm space-y-4">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h4 class="font-bold text-base text-brandRed"><i class="fa-solid fa-coins mr-1.5"></i> <span data-i18n="adminSection1Title">1. 基礎與加購單價設定</span></h4>
-                            <button type="button" onclick="addNewAddonItem()" class="text-xs bg-brandRed text-white font-bold px-3 py-1.5 rounded-lg hover:bg-brandRed-dark transition-all">+ 新增加購</button>
+                            <h4 class="font-bold text-base text-brandRed"><i class="fa-solid fa-file-code mr-1.5"></i> JSON 設定匯出/入</h4>
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs p-3 bg-brandBeige-light rounded-xl border border-brandBeige">
-                            <div>
-                                <label class="block font-bold text-stone-700 mb-1">超過 2 人多加人數單價 ($/人)</label>
-                                <input type="number" id="admExtraPersonPrice" class="w-full p-2 border border-brandBeige rounded-lg text-sm font-bold">
-                            </div>
-                            <div>
-                                <label class="block font-bold text-stone-700 mb-1">寵物清潔費單價 ($/隻)</label>
-                                <input type="number" id="admPetPrice" class="w-full p-2 border border-brandBeige rounded-lg text-sm font-bold">
-                            </div>
+                        <div class="flex gap-2">
+                            <button type="button" onclick="exportConfig()" class="text-xs bg-stone-700 text-white font-bold px-3 py-2 rounded-lg hover:bg-black transition-all">匯出設定 JSON</button>
+                            <input type="file" id="jsonFileInput" accept=".json" class="hidden" onchange="importConfig(event)">
+                            <button type="button" onclick="document.getElementById('jsonFileInput').click()" class="text-xs bg-stone-700 text-white font-bold px-3 py-2 rounded-lg hover:bg-black transition-all">匯入設定 JSON</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-stone-300 shadow-sm space-y-4">
+                        <div class="flex items-center justify-between border-b pb-2">
+                            <h4 class="font-bold text-base text-brandRed"><i class="fa-solid fa-coins mr-1.5"></i> <span data-i18n="adminSection1Title">1. 基礎與加購單價與時間設定</span></h4>
+                            <button type="button" onclick="addNewAddonItem()" class="text-xs bg-brandRed text-white font-bold px-3 py-1.5 rounded-lg hover:bg-brandRed-dark transition-all">+ 新增加購</button>
                         </div>
                         <div id="adminAddonsContainer" class="space-y-2 text-xs"></div>
                     </div>
 
                     <div class="bg-white p-5 rounded-2xl border border-stone-300 shadow-sm space-y-4">
                         <div class="flex items-center justify-between border-b pb-2">
-                            <h4 class="font-bold text-base text-brandRed"><i class="fa-solid fa-camera-retro mr-1.5"></i> <span data-i18n="adminSection2Title">2. 主方案基礎價與說明設定</span></h4>
+                            <h4 class="font-bold text-base text-brandRed"><i class="fa-solid fa-camera-retro mr-1.5"></i> <span data-i18n="adminSection2Title">2. 主方案基礎價、人數、預設拍攝時間與說明設定</span></h4>
                             <button type="button" onclick="addNewMainPackage()" class="text-xs bg-brandRed text-white font-bold px-3 py-1.5 rounded-lg hover:bg-brandRed-dark transition-all">+ 新增主方案</button>
                         </div>
                         <div id="adminPackagesContainer" class="space-y-4 text-xs"></div>
@@ -340,20 +325,18 @@
                         <div class="flex items-center justify-between border-b pb-2">
                             <h4 class="font-bold text-base text-brandRed"><i class="fa-solid fa-clock mr-1.5"></i> <span data-i18n="adminSection4Title">4. 拍攝時段與主題設定</span></h4>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-4">
                             <div class="bg-brandBeige-light p-3 rounded-xl border border-brandBeige">
+                                <h5 class="font-bold text-sm text-charcoal mb-2">預計拍攝時段清單</h5>
                                 <div class="flex justify-between items-center mb-2">
-                                    <h5 class="font-bold text-sm text-charcoal">預計拍攝時段清單</h5>
+                                    <span class="text-xs text-stone-500">設定可預約的時間區段</span>
                                     <button type="button" onclick="addNewTimeSlot()" class="text-[10px] bg-brandRed text-white px-2 py-1 rounded hover:bg-brandRed-dark">+ 新增時段</button>
                                 </div>
                                 <div id="adminTimeSlotsContainer" class="space-y-1.5 max-h-48 overflow-y-auto"></div>
                             </div>
                             <div class="bg-brandBeige-light p-3 rounded-xl border border-brandBeige">
-                                <div class="flex justify-between items-center mb-2">
-                                    <h5 class="font-bold text-sm text-charcoal">自拍拍攝主題清單</h5>
-                                    <button type="button" onclick="addNewTheme()" class="text-[10px] bg-brandRed text-white px-2 py-1 rounded hover:bg-brandRed-dark">+ 新增主題</button>
-                                </div>
-                                <div id="adminThemesContainer" class="space-y-1.5 max-h-48 overflow-y-auto"></div>
+                                <h5 class="font-bold text-sm text-charcoal mb-2">各拍攝模式的主題清單管理</h5>
+                                <div id="adminPackageThemesContainer" class="space-y-4"></div>
                             </div>
                         </div>
                     </div>
@@ -387,15 +370,12 @@
         <span id="toastMsg">訊息通知</span>
     </div>
 
-    <!-- FIREBASE INTEGRATION -->
     <script type="module">
-        // Import the functions you need from the SDKs you need
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
         import { getFirestore, doc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // Your web app's Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyAzTG-6S_ONOVTklM47crY9QPUNEunbqEE",
             authDomain: "wulinphoto-52941.firebaseapp.com",
@@ -406,17 +386,14 @@
             measurementId: "G-CRX9E1ECZ7"
         };
 
-        // Initialize Firebase
         const app = initializeApp(firebaseConfig);
         const analytics = getAnalytics(app);
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // Define collection and document ID
         const appId = 'wulin-photo-config';
         const configDocRef = doc(db, 'artifacts', appId, 'public', 'main_config');
 
-        // Expose save function to the main script
         window.saveConfigToFirebase = async function(configData) {
             try {
                 await setDoc(configDocRef, configData);
@@ -427,80 +404,56 @@
             }
         };
 
-        // Initialize Authentication & Snapshot listener
         async function initFirebase() {
             try {
                 await signInAnonymously(auth);
-                
-                // Listen to configuration changes in realtime
                 onSnapshot(configDocRef, (docSnap) => {
                     if (docSnap.exists()) {
                         if (window.loadConfigFromFirebase) {
                             window.loadConfigFromFirebase(docSnap.data());
                         }
                     }
-                }, (error) => {
-                    console.error("Firestore onSnapshot error:", error);
                 });
             } catch (error) {
                 console.error("Firebase Auth error:", error);
             }
         }
-        
         initFirebase();
     </script>
 
-    <!-- MAIN APPLICATION LOGIC -->
     <script>
         const DEFAULT_CONFIG = {
-            extraPersonPrice: 400,
-            petPrice: 350,
-
-            timeSlots: [
-                "10:00~11:00", "11:00~12:00", "13:00~14:00", 
-                "14:00~15:00", "15:00~16:00", "16:00~17:00", 
-                "17:00~18:00", "18:00~19:00"
-            ],
-
+            timeSlots: ["10:00~11:00", "11:00~12:00", "13:00~14:00", "14:00~15:00", "15:00~16:00", "16:00~17:00", "17:00~18:00", "18:00~19:00"],
             packages: [
-                {
-                    id: 'photographer',
-                    name: '攝影師模式',
-                    price: 2800,
-                    description: "包含專業攝影師指導擺姿、打光與拍設\n拍攝時間 60 分鐘\n提供精修相片 5 張\n電子檔全贈隨後提供",
-                    hasSubCategories: false
-                },
-                {
-                    id: 'selfie',
-                    name: '自拍模式',
-                    price: 1800,
-                    description: "遙控自由輕鬆自拍，保有完全私密空間\n拍攝時間 60 分鐘\n提供精修照片與電子檔全贈",
-                    hasSubCategories: false // Removed Bridal Category
-                }
+                { id: 'photographer', name: '攝影師模式', price: 2800, defaultHeadcount: 2, defaultTimeMin: 60, description: "包含專業攝影師指導擺姿、打光與拍設\n拍攝時間 60 分鐘\n提供精修相片 5 張\n電子檔全贈隨後提供", hasSubCategories: false },
+                { id: 'selfie', name: '自拍模式', price: 1800, defaultHeadcount: 2, defaultTimeMin: 60, description: "遙控自由輕鬆自拍，保有完全私密空間\n拍攝時間 60 分鐘\n提供精修照片與電子檔全贈", hasSubCategories: false }
             ],
-
+            packageThemes: {
+                photographer: [
+                    { id: 'p_portrait', name: '個人形象寫真' },
+                    { id: 'p_family', name: '全家福寫真' },
+                    { id: 'p_couple', name: '情侶閨蜜寫真' }
+                ],
+                selfie: [
+                    { id: 'maternity', name: '孕婦寫真' },
+                    { id: 'family', name: '全家福' },
+                    { id: 'graduation', name: '畢業照' },
+                    { id: 'portrait', name: '個人形象照' },
+                    { id: 'couple', name: '情侶寫真' },
+                    { id: 'pet', name: '寵物寫真' }
+                ]
+            },
             addons: [
-                { id: 'maleMakeup', name: '男士造型妝髮加購', price: 800, unit: '人', timeMin: 30 },
-                { id: 'femaleMakeup', name: '女士造型妝髮加購', price: 1500, unit: '人', timeMin: 60 },
-                { id: 'dressRental', name: '館內禮服選租加購', price: 1200, unit: '套', timeMin: 0 },
-                { id: 'extraTime', name: '加購拍攝時間 (30分鐘為單位)', price: 800, unit: '單位', timeMin: 30 }
+                { id: 'maleMakeup', name: '男士造型妝髮加購', price: 800, unit: '人', timeMin: 30, allowedThemes: { p_portrait: true, p_family: true, p_couple: true, maternity: true, family: true, graduation: true, portrait: true, couple: true, pet: true } },
+                { id: 'femaleMakeup', name: '女士造型妝髮加購', price: 1500, unit: '人', timeMin: 60, allowedThemes: { p_portrait: true, p_family: true, p_couple: true, maternity: true, family: true, graduation: true, portrait: true, couple: true, pet: true } },
+                { id: 'dressRental', name: '館內禮服選租加購', price: 1200, unit: '套', timeMin: 0, allowedThemes: { p_portrait: true, p_family: true, p_couple: true, maternity: true, family: true, graduation: true, portrait: true, couple: true, pet: true } },
+                { id: 'extraTime', name: '加購拍攝時間 (30分鐘為單位)', price: 800, unit: '單位', timeMin: 30, allowedThemes: { p_portrait: true, p_family: true, p_couple: true, maternity: true, family: true, graduation: true, portrait: true, couple: true, pet: true } }
             ],
-
-            classicThemes: [
-                { id: 'maternity', name: '孕婦寫真' },
-                { id: 'family', name: '全家福' },
-                { id: 'graduation', name: '畢業照' },
-                { id: 'portrait', name: '個人形象照' },
-                { id: 'couple', name: '情侶寫真' },
-                { id: 'pet', name: '寵物寫真' }
-            ],
-
             discounts: [
                 { id: 'early_bird', name: '早鳥預約優惠 (折 $200)', amount: 200, type: 'fixed', enabled: true },
                 { id: 'review_gift', name: '評論打卡優惠 (折 $100)', amount: 100, type: 'fixed', enabled: true },
                 { id: 'student_9折', name: '學生專屬 9 折優惠', amount: 0.9, type: 'percent', enabled: true }
             ],
-
             uiTexts: {
                 headerTitle: "吳林相館 官方報價線上試算系統",
                 adminBtnText: "工作人員後台",
@@ -510,22 +463,16 @@
                 step1Title: "預計拍攝日期與時段",
                 dateLabel: "預計拍攝日期 *",
                 timeLabel: "預計拍攝時段 (1小時為單位) *",
-                step2Title: "基本資料與預計拍攝人數",
+                step2Title: "基本資料",
                 nameLabel: "聯絡姓名 *",
                 namePlaceholder: "例：林小姐",
                 phoneLabel: "聯絡電話 *",
                 phonePlaceholder: "0912-345-678",
-                countLabel: "預計拍攝人數",
-                countDescPre: "基底包含 2 人 (超過 2 人，第 3 人起 +$",
-                countDescPost: "/人)",
-                countNote: "3 歲以下不用收費",
-                step3Title: "預計選擇的拍攝方式",
+                step3Title: "預計選擇的拍攝方式與人數",
                 pkgBasePriceText: "基底價：NT$",
                 pkgContentPrefix: "方案內容：",
                 step4Title: "方案選擇與加購項目",
-                classicThemeLabel: "請選擇自拍主題：",
-                petLabel: "寵物入鏡數量",
-                petDescPre: "一隻寵物酌收清潔費 $",
+                classicThemeLabel: "請選擇拍攝主題：",
                 discountTitle: "優惠折扣折抵",
                 discountSub: "適用折扣",
                 discountDefault: "不使用優惠",
@@ -534,8 +481,7 @@
                 summaryPhone: "聯絡電話：",
                 summaryDate: "預計拍攝日期：",
                 summaryTime: "預計拍攝時段：",
-                summaryShootTime: "拍攝時間：",
-                summaryMakeupTime: "妝髮預估時間",
+                summaryMakeupTime: "總拍攝時間",
                 summaryTotalTime: "預計總到店時間",
                 summaryDetailsTitle: "選擇方案與項目明細",
                 summarySubtotal: "小計",
@@ -557,9 +503,6 @@
                 copyTotalLabel: "💰 試算總金額：NT$",
                 copyFooterNote: "(現場採預約制，最終服務內容與細節依工作人員現場確認為準)",
                 itemBasePackage: "基礎方案",
-                itemExtraPerson: "多加人數",
-                itemExtraAdult: "位額外大人/小孩",
-                itemPetFee: "寵物入鏡清潔費",
                 itemDiscountPrefix: "【折扣優惠】",
                 adminLoginTitle: "吳林相館 工作人員後台登入",
                 adminLoginDesc: "請輸入工作人員專用密碼以編輯方案、價格與折扣設定",
@@ -567,8 +510,8 @@
                 adminBackBtn: "返回試算頁面",
                 adminLoginErr: "密碼錯誤，請重新輸入",
                 adminHeader: "工作人員後台控制台 - 方案與價格全動態管理",
-                adminSection1Title: "1. 基礎與加購單價設定",
-                adminSection2Title: "2. 主方案基礎價與說明設定",
+                adminSection1Title: "1. 加購項目與時間設定",
+                adminSection2Title: "2. 主方案基礎價、人數與說明設定",
                 adminSection3Title: "3. 優惠折扣項目管理",
                 adminSection4Title: "4. 拍攝時段與主題設定",
                 adminSection5Title: "5. 系統介面文字管理",
@@ -582,24 +525,29 @@
         let isAuthenticatedAdmin = false;
         let sortableInitialized = false;
 
-        let state = {
-            date: '',
-            timeSlot: '',
-            name: '',
-            phone: '',
-            adultCount: 2,
-            selectedPackageId: 'photographer',
-            classicTheme: 'portrait',
-            petCount: 0,
-            addonCounts: {},
-            discountId: 'none'
-        };
+        let state = { date: '', timeSlot: '', name: '', phone: '', adultCount: 2, selectedPackageId: 'photographer', selectedTheme: {}, addonCounts: {}, discountId: 'none' };
 
         window.onload = function() {
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('inputDate').value = today;
             state.date = today;
             
+            if (!config.packageThemes) config.packageThemes = {};
+            config.packages.forEach(pkg => {
+                if (pkg.defaultHeadcount !== undefined && pkg.id === state.selectedPackageId) {
+                    state.adultCount = pkg.defaultHeadcount;
+                }
+                if (pkg.defaultTimeMin === undefined) {
+                    pkg.defaultTimeMin = 60;
+                }
+                if (!config.packageThemes[pkg.id]) {
+                    config.packageThemes[pkg.id] = [{ id: 'default_' + pkg.id, name: '預設主題' }];
+                }
+                if (!state.selectedTheme[pkg.id]) {
+                    state.selectedTheme[pkg.id] = config.packageThemes[pkg.id][0] ? config.packageThemes[pkg.id][0].id : '';
+                }
+            });
+
             resetAddonCounts();
             applyI18n();
             renderTimeSlotsDropdown();
@@ -609,10 +557,26 @@
             updateCalculation();
         };
 
-        // Firebase Sync Hook
         window.loadConfigFromFirebase = function(newConfig) {
             config = JSON.parse(JSON.stringify(newConfig));
-            
+            if (!config.packageThemes) config.packageThemes = {};
+            config.packages.forEach(pkg => {
+                if (pkg.defaultTimeMin === undefined) {
+                    pkg.defaultTimeMin = 60;
+                }
+                if (!config.packageThemes[pkg.id]) {
+                    config.packageThemes[pkg.id] = [{ id: 'default_' + pkg.id, name: '預設主題' }];
+                }
+                if (!state.selectedTheme[pkg.id] || !config.packageThemes[pkg.id].some(t => t.id === state.selectedTheme[pkg.id])) {
+                    state.selectedTheme[pkg.id] = config.packageThemes[pkg.id][0] ? config.packageThemes[pkg.id][0].id : '';
+                }
+            });
+
+            const currentPkg = config.packages.find(p => p.id === state.selectedPackageId);
+            if (currentPkg && currentPkg.defaultHeadcount !== undefined) {
+                state.adultCount = currentPkg.defaultHeadcount;
+            }
+
             resetAddonCounts();
             applyI18n();
             renderTimeSlotsDropdown();
@@ -620,12 +584,50 @@
             renderClassicThemes();
             renderDiscountSelect();
             updateCalculation();
-
-            // Refresh dashboard if it's currently open
             if (document.getElementById('adminDashboard') && !document.getElementById('adminDashboard').classList.contains('hidden')) {
                 showAdminDashboard();
             }
         };
+
+        // JSON Import/Export Logic
+        function exportConfig() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(config, null, 2));
+            const dlAnchorElem = document.createElement('a');
+            dlAnchorElem.setAttribute("href", dataStr);
+            dlAnchorElem.setAttribute("download", "config_export.json");
+            dlAnchorElem.click();
+            showToast('已匯出設定為 JSON 檔案', false);
+        }
+
+        function importConfig(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    config = imported;
+                    if (!config.packageThemes) config.packageThemes = {};
+                    config.packages.forEach(pkg => {
+                        if (pkg.defaultTimeMin === undefined) pkg.defaultTimeMin = 60;
+                        if (!config.packageThemes[pkg.id]) {
+                            config.packageThemes[pkg.id] = [{ id: 'default_' + pkg.id, name: '預設主題' }];
+                        }
+                    });
+                    applyI18n();
+                    renderTimeSlotsDropdown();
+                    renderMainPackageButtons();
+                    renderClassicThemes();
+                    renderDiscountSelect();
+                    updateCalculation();
+                    showAdminDashboard();
+                    showToast('已匯入 JSON 設定', false);
+                } catch(err) {
+                    showToast('匯入失敗，請確認檔案格式正確', true);
+                }
+            };
+            reader.readAsText(file);
+        }
 
         function resetAddonCounts() {
             state.addonCounts = {};
@@ -654,7 +656,6 @@
                 const key = el.getAttribute('data-i18n-ph');
                 if (t[key] !== undefined) el.placeholder = t[key];
             });
-            document.getElementById('ruleExtraPersonText').innerHTML = `${t.countDescPre}<span id="ruleExtraPersonPrice" class="font-bold">${config.extraPersonPrice}</span>${t.countDescPost}`;
         }
 
         function renderTimeSlotsDropdown() {
@@ -667,11 +668,7 @@
                 opt.textContent = slot;
                 select.appendChild(opt);
             });
-            if (config.timeSlots.includes(currentVal)) {
-                select.value = currentVal;
-            } else if (config.timeSlots.length > 0) {
-                select.value = config.timeSlots[0];
-            }
+            if (config.timeSlots.includes(currentVal)) { select.value = currentVal; } else if (config.timeSlots.length > 0) { select.value = config.timeSlots[0]; }
             state.timeSlot = select.value;
         }
 
@@ -683,17 +680,15 @@
                 const isSelected = state.selectedPackageId === pkg.id;
                 const btn = document.createElement('button');
                 btn.type = 'button';
-                btn.onclick = () => { state.selectedPackageId = pkg.id; updateCalculation(); };
-                btn.className = `p-4 rounded-xl border-2 text-left transition-all duration-200 relative overflow-hidden ${
-                    isSelected ? 'bg-brandRed text-white border-brandBeige shadow-lg font-bold' : 'bg-brandBeige-light text-charcoal border-brandBeige hover:border-brandRed'
-                }`;
-                btn.innerHTML = `
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="font-bold text-base">${pkg.name}</span>
-                        <i class="fa-solid ${pkg.id === 'photographer' ? 'fa-camera' : 'fa-hand-holding-hand'} text-lg"></i>
-                    </div>
-                    <p class="text-xs opacity-90 font-medium">${t.pkgBasePriceText} ${pkg.price.toLocaleString()}</p>
-                `;
+                btn.onclick = () => { 
+                    state.selectedPackageId = pkg.id; 
+                    if (pkg.defaultHeadcount !== undefined) {
+                        state.adultCount = pkg.defaultHeadcount;
+                    }
+                    updateCalculation(); 
+                };
+                btn.className = `p-4 rounded-xl border-2 text-left transition-all duration-200 relative overflow-hidden ${isSelected ? 'bg-brandRed text-white border-brandBeige shadow-lg font-bold' : 'bg-brandBeige-light text-charcoal border-brandBeige hover:border-brandRed'}`;
+                btn.innerHTML = `<div class="flex items-center justify-between mb-1"><span class="font-bold text-base">${pkg.name}</span><i class="fa-solid ${pkg.id === 'photographer' ? 'fa-camera' : 'fa-hand-holding-hand'} text-lg"></i></div><p class="text-xs opacity-90 font-medium">${t.pkgBasePriceText} ${pkg.price.toLocaleString()}</p>`;
                 container.appendChild(btn);
             });
         }
@@ -701,19 +696,23 @@
         function renderClassicThemes() {
             const container = document.getElementById('classicThemeGrid');
             container.innerHTML = '';
-            config.classicThemes.forEach(theme => {
-                const isSelected = state.classicTheme === theme.id;
-                const btn = document.createElement('button');
-                btn.type = 'button';
-                btn.onclick = () => { state.classicTheme = theme.id; renderClassicThemes(); updateCalculation(); };
-                btn.className = `py-2 px-3 text-xs font-bold rounded-xl border transition-all ${
-                    isSelected ? 'bg-brandRed text-white border-brandBeige shadow-sm' : 'bg-brandBeige-light text-charcoal border-brandBeige hover:bg-brandBeige'
-                }`;
-                btn.innerHTML = `<i class="fa-regular ${isSelected ? 'fa-circle-dot' : 'fa-circle'} mr-1.5"></i>${theme.name}`;
-                container.appendChild(btn);
-            });
-            if (!config.classicThemes.find(t => t.id === state.classicTheme) && config.classicThemes.length > 0) {
-                state.classicTheme = config.classicThemes[0].id;
+            
+            if (!config.packageThemes) config.packageThemes = {};
+            const themes = config.packageThemes[state.selectedPackageId] || [];
+            
+            if (themes.length > 0) {
+                if (!state.selectedTheme[state.selectedPackageId] || !themes.some(t => t.id === state.selectedTheme[state.selectedPackageId])) {
+                    state.selectedTheme[state.selectedPackageId] = themes[0].id;
+                }
+                themes.forEach(theme => {
+                    const isSelected = state.selectedTheme[state.selectedPackageId] === theme.id;
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.onclick = () => { state.selectedTheme[state.selectedPackageId] = theme.id; renderClassicThemes(); updateCalculation(); };
+                    btn.className = `py-2 px-3 text-xs font-bold rounded-xl border transition-all ${isSelected ? 'bg-brandRed text-white border-brandBeige shadow-sm' : 'bg-brandBeige-light text-charcoal border-brandBeige hover:bg-brandBeige'}`;
+                    btn.innerHTML = `<i class="fa-regular ${isSelected ? 'fa-circle-dot' : 'fa-circle'} mr-1.5"></i>${theme.name}`;
+                    container.appendChild(btn);
+                });
             }
         }
 
@@ -731,64 +730,24 @@
 
         function renderDynamicAddonsUI() {
             const container = document.getElementById('dynamicAddonsList');
-            const t = config.uiTexts;
             container.innerHTML = '';
-
-            if (state.selectedPackageId === 'selfie') {
-                const petBox = document.createElement('div');
-                petBox.className = "p-3.5 bg-brandBeige-light rounded-xl border border-brandBeige flex items-center justify-between";
-                petBox.innerHTML = `
-                    <div>
-                        <div class="text-xs font-bold text-charcoal flex items-baseline flex-wrap">
-                            <i class="fa-solid fa-paw text-brandRed mr-1"></i> 
-                            <span>${t.petLabel}</span>
-                            <span class="text-[11px] text-stone-600 font-normal ml-1.5">${t.petDescPre}${config.petPrice}</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <button type="button" onclick="adjustCount('petCount', -1)" class="w-7 h-7 rounded bg-white border border-brandBeige text-xs font-bold">-</button>
-                        <span class="w-6 text-center text-xs font-bold text-brandRed">${state.petCount}</span>
-                        <button type="button" onclick="adjustCount('petCount', 1)" class="w-7 h-7 rounded bg-white border border-brandBeige text-xs font-bold">+</button>
-                    </div>
-                `;
-                container.appendChild(petBox);
-            } else {
-                state.petCount = 0;
-            }
-
-            config.addons.forEach(addon => {
+            const currentThemeId = state.selectedTheme[state.selectedPackageId];
+            
+            const filteredAddons = config.addons.filter(addon => {
+                if (!addon.allowedThemes) return true;
+                return addon.allowedThemes[currentThemeId] === true;
+            });
+            
+            filteredAddons.forEach(addon => {
                 const count = state.addonCounts[addon.id] || 0;
                 const row = document.createElement('div');
                 row.className = "p-3.5 rounded-xl bg-brandBeige-light border border-brandBeige flex items-center justify-between";
-                row.innerHTML = `
-                    <div>
-                        <div class="font-bold text-xs text-charcoal flex items-baseline flex-wrap">
-                            <span class="text-brandRed mr-2 font-bold">．</span> 
-                            <span>${addon.name}</span>
-                            <span class="text-[11px] text-stone-600 font-normal ml-1.5">+$${addon.price} / ${addon.unit}</span>
-                        </div>
-                    </div>
-                    <div class="flex items-center space-x-2">
-                        <button type="button" onclick="adjustAddonCount('${addon.id}', -1)" class="w-7 h-7 rounded bg-white border border-brandBeige text-xs font-bold hover:bg-brandRed hover:text-white">-</button>
-                        <span class="w-6 text-center text-xs font-bold text-brandRed">${count}</span>
-                        <button type="button" onclick="adjustAddonCount('${addon.id}', 1)" class="w-7 h-7 rounded bg-white border border-brandBeige text-xs font-bold hover:bg-brandRed hover:text-white">+</button>
-                    </div>
-                `;
+                row.innerHTML = `<div><div class="font-bold text-xs text-charcoal flex items-baseline flex-wrap"><span class="text-brandRed mr-2 font-bold">．</span> <span>${addon.name}</span><span class="text-[11px] text-stone-600 font-normal ml-1.5">+$${addon.price} / ${addon.unit}</span></div></div><div class="flex items-center space-x-2"><button type="button" onclick="adjustAddonCount('${addon.id}', -1)" class="w-7 h-7 rounded bg-white border border-brandBeige text-xs font-bold hover:bg-brandRed hover:text-white">-</button><span class="w-6 text-center text-xs font-bold text-brandRed">${count}</span><button type="button" onclick="adjustAddonCount('${addon.id}', 1)" class="w-7 h-7 rounded bg-white border border-brandBeige text-xs font-bold hover:bg-brandRed hover:text-white">+</button></div>`;
                 container.appendChild(row);
             });
         }
 
-        function adjustCount(key, delta) {
-            if (state[key] !== undefined) {
-                state[key] = Math.max(0, state[key] + delta);
-                if (key === 'adultCount') state[key] = Math.max(1, state[key]);
-                updateCalculation();
-            }
-        }
-        function adjustAddonCount(addonId, delta) {
-            state.addonCounts[addonId] = Math.max(0, (state.addonCounts[addonId] || 0) + delta);
-            updateCalculation();
-        }
+        function adjustAddonCount(addonId, delta) { state.addonCounts[addonId] = Math.max(0, (state.addonCounts[addonId] || 0) + delta); updateCalculation(); }
 
         function updateCalculation() {
             const t = config.uiTexts;
@@ -798,254 +757,195 @@
             state.phone = document.getElementById('inputPhone').value.trim();
             state.discountId = document.getElementById('selectDiscount').value;
             
-            document.getElementById('displayAdultCount').innerText = state.adultCount;
-
             const selectedPkg = config.packages.find(p => p.id === state.selectedPackageId) || config.packages[0];
+            if (selectedPkg && selectedPkg.defaultHeadcount !== undefined) {
+                state.adultCount = selectedPkg.defaultHeadcount;
+            }
+            
             renderMainPackageButtons();
-
             document.getElementById('mainModeDescBox').innerHTML = `<strong><i class="fa-solid fa-star text-brandRed mr-1"></i>${t.pkgContentPrefix}</strong><div class="whitespace-pre-line mt-1">${selectedPkg.description}</div>`;
-
+            
             const classicThemeBox = document.getElementById('classicThemeBox');
-            if (selectedPkg.id === 'selfie') {
+            if (!config.packageThemes) config.packageThemes = {};
+            const currentThemes = config.packageThemes[state.selectedPackageId] || [];
+            
+            if (currentThemes.length > 0) {
                 classicThemeBox.classList.remove('hidden');
+                renderClassicThemes();
             } else {
                 classicThemeBox.classList.add('hidden');
             }
+
             renderDynamicAddonsUI();
-
-            let total = 0;
-            let items = [];
-            let totalShootingTimeMin = 60;
-            let totalMakeupTimeMin = 0;
-            let extraBackgrounds = 0;
-
-            // 1. Base Package
+            let total = 0, items = [], baseShootingTimeMin = selectedPkg.defaultTimeMin !== undefined ? selectedPkg.defaultTimeMin : 60, totalShootingTimeMin = baseShootingTimeMin, totalMakeupTimeMin = 0, extraBackgrounds = 0;
             total += selectedPkg.price;
             let pkgDisplayName = selectedPkg.name;
-            if (selectedPkg.id === 'selfie') {
-                const selectedThemeObj = config.classicThemes.find(ct => ct.id === state.classicTheme);
-                if (selectedThemeObj) pkgDisplayName += ` (${selectedThemeObj.name})`;
+            
+            const themesList = config.packageThemes[state.selectedPackageId] || [];
+            const selectedThemeObj = themesList.find(ct => ct.id === state.selectedTheme[state.selectedPackageId]);
+            if (selectedThemeObj) {
+                pkgDisplayName += ` (${selectedThemeObj.name})`;
             }
             items.push({ name: `${pkgDisplayName} ${t.itemBasePackage}`, cost: selectedPkg.price });
-
-            // 2. Extra Person
-            if (state.adultCount > 2) {
-                const extraCount = state.adultCount - 2;
-                const cost = extraCount * config.extraPersonPrice;
-                total += cost;
-                items.push({ name: `${t.itemExtraPerson} (${extraCount}${t.itemExtraAdult})`, cost: cost });
-            }
-
-            // 3. Pet Fee
-            if (state.petCount > 0) {
-                const cost = state.petCount * config.petPrice;
-                total += cost;
-                items.push({ name: `${t.itemPetFee} (${state.petCount})`, cost: cost });
-            }
-
-            // 4. Dynamic Addons
+            
             config.addons.forEach(addon => {
                 const count = state.addonCounts[addon.id] || 0;
                 if (count > 0) {
-                    const cost = count * addon.price;
-                    total += cost;
-                    items.push({ name: `${addon.name} (${count} ${addon.unit})`, cost: cost });
+                    const cost = count * addon.price; 
+                    total += cost; 
+                    let itemDesc = `${addon.name} (${count} ${addon.unit})`;
                     if (addon.timeMin > 0) {
-                        if (addon.id === 'extraTime') {
-                            totalShootingTimeMin += count * addon.timeMin;
-                            extraBackgrounds += count;
-                        } else {
-                            totalMakeupTimeMin += count * addon.timeMin;
-                        }
+                        itemDesc += ` [耗時 ${count * addon.timeMin} 分鐘]`;
+                    }
+                    items.push({ name: itemDesc, cost: cost });
+                    
+                    if (addon.timeMin > 0) { 
+                        if (addon.id === 'extraTime') { 
+                            totalShootingTimeMin += count * addon.timeMin; 
+                            extraBackgrounds += count; 
+                        } else { 
+                            totalMakeupTimeMin += count * addon.timeMin; 
+                        } 
                     }
                 }
             });
-
-            // 5. Discount
             if (state.discountId !== 'none') {
                 const discObj = config.discounts.find(d => d.id === state.discountId && d.enabled);
-                if (discObj) {
-                    let discountAmount = discObj.type === 'fixed' ? discObj.amount : Math.round(total * (1 - discObj.amount));
-                    total = Math.max(0, total - discountAmount);
-                    items.push({ name: `${t.itemDiscountPrefix}${discObj.name}`, cost: -discountAmount });
-                }
+                if (discObj) { let discountAmount = discObj.type === 'fixed' ? discObj.amount : Math.round(total * (1 - discObj.amount)); total = Math.max(0, total - discountAmount); items.push({ name: `${t.itemDiscountPrefix}${discObj.name}`, cost: -discountAmount }); }
             }
-
-            // Update UI
             document.getElementById('summaryName').innerText = state.name || t.unfilled;
             document.getElementById('summaryPhone').innerText = state.phone || t.unfilled;
             document.getElementById('summaryDate').innerText = state.date || t.unselected;
             document.getElementById('summaryTimeSlot').innerText = state.timeSlot || t.unselected;
-            document.getElementById('summaryShootingTime').innerText = `${totalShootingTimeMin} ${t.minutes}`;
-            document.getElementById('summaryMakeupTime').innerText = `${totalMakeupTimeMin} ${t.minutes}`;
+            document.getElementById('summaryTotalHeadcount').innerText = `${state.adultCount} 人`;
+            document.getElementById('summaryMakeupTime').innerText = `${totalShootingTimeMin} ${t.minutes}`;
             document.getElementById('summaryTotalTime').innerText = `約 ${totalShootingTimeMin + totalMakeupTimeMin} ${t.minutes}`;
             document.getElementById('summaryBgColors').innerHTML = `${1 + extraBackgrounds} <span class="text-stone-700 font-normal text-xs">${t.colorUnit}</span>`;
             document.getElementById('summaryTotalPrice').innerText = total.toLocaleString();
-
             const now = new Date();
             document.getElementById('summaryGenTime').innerText = `${now.getFullYear()}/${now.getMonth()+1}/${now.getDate()} ${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
-
-            const itemsContainer = document.getElementById('summaryItemsList');
-            itemsContainer.innerHTML = '';
+            const itemsContainer = document.getElementById('summaryItemsList'); itemsContainer.innerHTML = '';
             items.forEach(item => {
                 const isDiscount = item.cost < 0;
                 const row = document.createElement('div');
                 row.className = "flex justify-between items-center text-stone-700";
-                row.innerHTML = `
-                    <span class="${isDiscount ? 'text-brandRed font-bold' : ''}">${item.name}</span>
-                    <span class="font-bold ${isDiscount ? 'text-brandRed' : 'text-stone-900'}">
-                        ${isDiscount ? '-' : ''}NT$ ${Math.abs(item.cost).toLocaleString()}
-                    </span>
-                `;
+                row.innerHTML = `<span class="${isDiscount ? 'text-brandRed font-bold' : ''}">${item.name}</span><span class="font-bold ${isDiscount ? 'text-brandRed' : 'text-stone-900'}">${isDiscount ? '-' : ''}NT$ ${Math.abs(item.cost).toLocaleString()}</span>`;
                 itemsContainer.appendChild(row);
             });
-        }
-
-        function downloadQuoteCardImage() {
-            const card = document.getElementById('quoteCard');
-            showToast('正在生成試算單圖片...', false);
-            html2canvas(card, { scale: 3, backgroundColor: '#f3eeed', useCORS: true }).then(canvas => {
-                const link = document.createElement('a');
-                link.download = `吳林相館_報價試算單_${state.name || '顧客'}_${state.date}.png`;
-                link.href = canvas.toDataURL('image/png');
-                link.click();
-                showToast('試算單圖片已成功下載！', false);
-            }).catch(err => showToast('生成圖片失敗，請稍後再試', true));
         }
 
         function copyQuoteText() {
             const t = config.uiTexts;
             let itemsTxt = '';
-            document.querySelectorAll('#summaryItemsList > div').forEach(el => {
-                const spans = el.querySelectorAll('span');
-                itemsTxt += `  - ${spans[0].innerText}：${spans[1].innerText}\n`;
-            });
-
-            const textToCopy = 
-`${t.copyHeader}
----------------------------------
-▪ ${t.summaryName}${state.name || t.unfilled}
-▪ ${t.summaryPhone}${state.phone || t.unfilled}
-▪ ${t.summaryDate}${state.date || t.unselected}
-▪ ${t.summaryTime}${state.timeSlot}
-▪ ${t.summaryShootTime}${document.getElementById('summaryShootingTime').innerText}
-▪ ${t.copyPeopleLabel}${state.adultCount} 人 ${t.copyFreeNote}
-
-${t.copyDetailsHeader}
-${itemsTxt}
-▪ ${t.summaryBgColor}${document.getElementById('summaryBgColors').innerText}
-▪ ${t.summaryTotalTime}${document.getElementById('summaryTotalTime').innerText}
-
----------------------------------
-${t.copyTotalLabel} ${document.getElementById('summaryTotalPrice').innerText}
-${t.copyFooterNote}`;
-
-            const temp = document.createElement('textarea');
-            temp.value = textToCopy;
-            document.body.appendChild(temp);
-            temp.select();
-            try {
-                document.execCommand('copy');
-                showToast('報價明細文字已複製到剪貼簿！', false);
-            } catch (err) {
-                showToast('複製失敗，請手動選取', true);
-            }
+            document.querySelectorAll('#summaryItemsList > div').forEach(el => { const spans = el.querySelectorAll('span'); itemsTxt += `  - ${spans[0].innerText}：${spans[1].innerText}\n`; });
+            const textToCopy = `${t.copyHeader}\n---------------------------------\n▪ ${t.summaryName}${state.name || t.unfilled}\n▪ ${t.summaryPhone}${state.phone || t.unfilled}\n▪ ${t.summaryDate}${state.date || t.unselected}\n▪ ${t.summaryTime}${state.timeSlot}\n▪ 人數：${state.adultCount} 人 ${t.copyFreeNote}\n\n${t.copyDetailsHeader}\n${itemsTxt}\n▪ ${t.summaryBgColor}${document.getElementById('summaryBgColors').innerText}\n▪ ${t.summaryTotalTime}${document.getElementById('summaryTotalTime').innerText}\n\n---------------------------------\n${t.copyTotalLabel} ${document.getElementById('summaryTotalPrice').innerText}\n${t.copyFooterNote}`;
+            const temp = document.createElement('textarea'); temp.value = textToCopy; document.body.appendChild(temp); temp.select();
+            try { document.execCommand('copy'); showToast('報價明細文字已複製到剪貼簿！', false); } catch (err) { showToast('複製失敗', true); }
             document.body.removeChild(temp);
         }
 
-        function openAdminModal() {
-            document.getElementById('adminModal').classList.remove('hidden');
-            if (!isAuthenticatedAdmin) {
-                document.getElementById('adminLoginScreen').classList.remove('hidden');
-                document.getElementById('adminDashboard').classList.add('hidden');
-            } else {
-                showAdminDashboard();
-            }
-        }
+        function openAdminModal() { document.getElementById('adminModal').classList.remove('hidden'); if (!isAuthenticatedAdmin) { document.getElementById('adminLoginScreen').classList.remove('hidden'); document.getElementById('adminDashboard').classList.add('hidden'); } else { showAdminDashboard(); } }
         function closeAdminModal() { document.getElementById('adminModal').classList.add('hidden'); }
-        function verifyAdminPassword() {
-            if (document.getElementById('adminPasswordInput').value === 'wulin2024') {
-                isAuthenticatedAdmin = true;
-                document.getElementById('adminLoginErr').classList.add('hidden');
-                showAdminDashboard();
-                showToast('工作人員登入成功！', false);
-            } else {
-                document.getElementById('adminLoginErr').classList.remove('hidden');
-            }
-        }
+        function verifyAdminPassword() { if (document.getElementById('adminPasswordInput').value === 'wulin2024') { isAuthenticatedAdmin = true; document.getElementById('adminLoginErr').classList.add('hidden'); showAdminDashboard(); showToast('工作人員登入成功！', false); } else { document.getElementById('adminLoginErr').classList.remove('hidden'); } }
 
         function showAdminDashboard() {
             document.getElementById('adminLoginScreen').classList.add('hidden');
             document.getElementById('adminDashboard').classList.remove('hidden');
-            document.getElementById('admExtraPersonPrice').value = config.extraPersonPrice;
-            document.getElementById('admPetPrice').value = config.petPrice;
-
-            renderAdminAddons();
-            renderAdminPackages();
-            renderAdminDiscounts();
-            renderAdminThemes();
-            renderAdminTimeSlots();
+            renderAdminAddons(); 
+            renderAdminPackages(); 
+            renderAdminDiscounts(); 
+            renderAdminPackageThemes(); 
+            renderAdminTimeSlots(); 
             renderAdminTexts();
-
-            if (!sortableInitialized) {
-                initSortables();
-                sortableInitialized = true;
-            }
+            if (!sortableInitialized) { initSortables(); sortableInitialized = true; }
         }
 
         function initSortables() {
-            const opts = (arrKey, renderFn) => ({
-                animation: 150, delay: 200, delayOnTouchOnly: true, handle: '.drag-handle',
-                onEnd: (evt) => {
-                    const arr = config[arrKey];
-                    const item = arr.splice(evt.oldIndex, 1)[0];
-                    arr.splice(evt.newIndex, 0, item);
-                    renderFn();
-                }
-            });
+            const opts = (arrKey, renderFn) => ({ animation: 150, delay: 200, delayOnTouchOnly: true, handle: '.drag-handle', onEnd: (evt) => { const arr = config[arrKey]; const item = arr.splice(evt.oldIndex, 1)[0]; arr.splice(evt.newIndex, 0, item); renderFn(); } });
             new Sortable(document.getElementById('adminAddonsContainer'), opts('addons', renderAdminAddons));
-            new Sortable(document.getElementById('adminThemesContainer'), opts('classicThemes', renderAdminThemes));
             new Sortable(document.getElementById('adminTimeSlotsContainer'), opts('timeSlots', renderAdminTimeSlots));
         }
 
         function renderAdminAddons() {
             const container = document.getElementById('adminAddonsContainer');
             container.innerHTML = '';
+            if (!config.packageThemes) config.packageThemes = {};
+
             config.addons.forEach((addon, index) => {
                 const row = document.createElement('div');
-                row.className = "flex flex-wrap sm:flex-nowrap items-center gap-2 bg-brandBeige-light p-2.5 rounded-xl border border-brandBeige";
+                row.className = "bg-brandBeige-light p-3 rounded-xl border border-brandBeige space-y-2";
+                if (!addon.allowedThemes) addon.allowedThemes = {};
+
+                let themesCheckboxesHtml = '';
+                config.packages.forEach(pkg => {
+                    const pkgThemes = config.packageThemes[pkg.id] || [];
+                    if (pkgThemes.length > 0) {
+                        themesCheckboxesHtml += `<div class="mb-1 text-[11px] font-bold text-brandRed">■ ${pkg.name}主題：</div><div class="flex flex-wrap gap-3 mb-2 pl-2">`;
+                        pkgThemes.forEach(th => {
+                            const isChecked = addon.allowedThemes[th.id] !== false; // default true
+                            themesCheckboxesHtml += `<label class="flex items-center gap-1 font-normal text-stone-700"><input type="checkbox" ${isChecked ? 'checked' : ''} onchange="toggleAddonTheme(${index}, '${th.id}', this.checked)"> ${th.name}</label>`;
+                        });
+                        themesCheckboxesHtml += `</div>`;
+                    }
+                });
+
                 row.innerHTML = `
-                    <div class="drag-handle cursor-grab active:cursor-grabbing px-1 text-stone-400 hover:text-brandRed"><i class="fa-solid fa-grip-vertical"></i></div>
-                    <input type="text" value="${addon.name}" onchange="config.addons[${index}].name = this.value" class="flex-grow p-1.5 border border-brandBeige rounded-lg text-xs font-bold bg-white" placeholder="加購項目名稱">
-                    <div class="flex items-center space-x-1">
-                        <span class="text-stone-500">$</span>
-                        <input type="number" value="${addon.price}" onchange="config.addons[${index}].price = parseFloat(this.value)||0" class="w-16 p-1.5 border border-brandBeige rounded-lg text-xs text-right font-bold bg-white">
+                    <div class="flex items-center gap-2 flex-wrap sm:flex-nowrap">
+                        <div class="drag-handle cursor-grab active:cursor-grabbing text-stone-400 hover:text-brandRed"><i class="fa-solid fa-grip-vertical"></i></div>
+                        <input type="text" value="${addon.name}" onchange="config.addons[${index}].name = this.value" class="flex-grow p-1.5 border border-brandBeige rounded-lg text-xs font-bold bg-white min-w-[120px]" placeholder="加購項目名稱">
+                        <div class="flex items-center space-x-1"><span class="text-stone-500">$</span><input type="number" value="${addon.price}" onchange="config.addons[${index}].price = parseFloat(this.value)||0" class="w-16 p-1.5 border border-brandBeige rounded-lg text-xs text-right font-bold bg-white"></div>
+                        <div class="flex items-center space-x-1"><span class="text-stone-500">/</span><input type="text" value="${addon.unit}" onchange="config.addons[${index}].unit = this.value" class="w-12 p-1.5 border border-brandBeige rounded-lg text-xs text-center bg-white"></div>
+                        <div class="flex items-center space-x-1"><span class="text-stone-500 text-[11px]">耗時:</span><input type="number" value="${addon.timeMin || 0}" onchange="config.addons[${index}].timeMin = parseInt(this.value)||0" class="w-14 p-1.5 border border-brandBeige rounded-lg text-xs text-center font-bold bg-white"><span class="text-[11px] text-stone-500">分</span></div>
+                        <button type="button" onclick="config.addons.splice(${index},1); renderAdminAddons();" class="text-red-600 hover:text-red-800 px-1 text-sm"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
-                    <div class="flex items-center space-x-1">
-                        <span class="text-stone-500">/</span>
-                        <input type="text" value="${addon.unit}" onchange="config.addons[${index}].unit = this.value" class="w-12 p-1.5 border border-brandBeige rounded-lg text-xs text-center bg-white">
+                    <div class="pt-1 pl-6 border-t border-brandBeige/60">
+                        <div class="text-[10px] font-bold text-stone-500 mb-1">各主題加購選項開關：</div>
+                        ${themesCheckboxesHtml}
                     </div>
-                    <button type="button" onclick="config.addons.splice(${index},1); renderAdminAddons();" class="text-red-600 hover:text-red-800 px-1 text-sm"><i class="fa-solid fa-trash-can"></i></button>
                 `;
                 container.appendChild(row);
             });
         }
-        function addNewAddonItem() { config.addons.push({ id: 'addon_'+Date.now(), name: '新增加購項目', price: 500, unit: '項', timeMin: 0 }); renderAdminAddons(); }
 
+        function toggleAddonTheme(addonIndex, themeId, isChecked) {
+            if (!config.addons[addonIndex].allowedThemes) config.addons[addonIndex].allowedThemes = {};
+            config.addons[addonIndex].allowedThemes[themeId] = isChecked;
+            renderAdminAddons();
+        }
+
+        function addNewAddonItem() { 
+            const defaultThemesMap = {};
+            if (config.packageThemes) {
+                Object.values(config.packageThemes).forEach(themes => { themes.forEach(th => defaultThemesMap[th.id] = true); });
+            }
+            config.addons.push({ id: 'addon_'+Date.now(), name: '新增加購項目', price: 500, unit: '項', timeMin: 0, allowedThemes: defaultThemesMap }); 
+            renderAdminAddons(); 
+        }
+        
         function renderAdminPackages() {
             const container = document.getElementById('adminPackagesContainer');
             container.innerHTML = '';
             config.packages.forEach((pkg, index) => {
+                const defaultHeadcountVal = pkg.defaultHeadcount !== undefined ? pkg.defaultHeadcount : 2;
+                const defaultTimeMinVal = pkg.defaultTimeMin !== undefined ? pkg.defaultTimeMin : 60;
                 const card = document.createElement('div');
                 card.className = "p-4 bg-brandBeige-light rounded-2xl border border-brandBeige space-y-2.5";
                 card.innerHTML = `
-                    <div class="flex items-center justify-between gap-2">
-                        <input type="text" value="${pkg.name}" onchange="config.packages[${index}].name = this.value" class="font-bold text-sm text-brandRed p-1.5 border border-brandBeige rounded-lg flex-grow bg-white">
+                    <div class="flex items-center justify-between gap-2 flex-wrap">
+                        <input type="text" value="${pkg.name}" onchange="config.packages[${index}].name = this.value; renderAdminPackageThemes();" class="font-bold text-sm text-brandRed p-1.5 border border-brandBeige rounded-lg flex-grow bg-white">
+                        <div class="flex items-center space-x-1">
+                            <span class="text-xs font-bold text-stone-600">預設人數:</span>
+                            <input type="number" value="${defaultHeadcountVal}" min="1" onchange="config.packages[${index}].defaultHeadcount = parseInt(this.value)||2" class="w-16 p-1.5 border border-brandBeige rounded-lg text-xs text-center font-bold bg-white">
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <span class="text-xs font-bold text-stone-600">預設拍攝時間(分):</span>
+                            <input type="number" value="${defaultTimeMinVal}" min="1" onchange="config.packages[${index}].defaultTimeMin = parseInt(this.value)||60" class="w-16 p-1.5 border border-brandBeige rounded-lg text-xs text-center font-bold bg-white">
+                        </div>
                         <div class="flex items-center space-x-1">
                             <span class="text-xs font-bold text-stone-600">NT$</span>
                             <input type="number" value="${pkg.price}" onchange="config.packages[${index}].price = parseFloat(this.value)||0" class="w-24 p-1.5 border border-brandBeige rounded-lg text-xs text-right font-bold bg-white">
                         </div>
-                        ${config.packages.length > 1 ? `<button type="button" onclick="config.packages.splice(${index},1); renderAdminPackages();" class="text-red-600 hover:text-red-800 px-2 text-sm"><i class="fa-solid fa-trash-can"></i></button>` : ''}
+                        ${config.packages.length > 1 ? `<button type="button" onclick="config.packages.splice(${index},1); renderAdminPackages(); renderAdminPackageThemes();" class="text-red-600 hover:text-red-800 px-2 text-sm"><i class="fa-solid fa-trash-can"></i></button>` : ''}
                     </div>
                     <div>
                         <textarea rows="3" onchange="config.packages[${index}].description = this.value" class="w-full p-2 border border-brandBeige rounded-lg text-xs font-medium bg-white leading-relaxed">${pkg.description}</textarea>
@@ -1054,7 +954,15 @@ ${t.copyFooterNote}`;
                 container.appendChild(card);
             });
         }
-        function addNewMainPackage() { config.packages.push({ id: 'pkg_'+Date.now(), name: '新主題方案', price: 2000, description: "方案內容", hasSubCategories: false }); renderAdminPackages(); }
+        
+        function addNewMainPackage() { 
+            const newId = 'pkg_'+Date.now();
+            config.packages.push({ id: newId, name: '新主題方案', price: 2000, defaultHeadcount: 2, defaultTimeMin: 60, description: "方案內容", hasSubCategories: false }); 
+            if (!config.packageThemes) config.packageThemes = {};
+            config.packageThemes[newId] = [{ id: 'theme_' + Date.now(), name: '預設拍攝主題' }];
+            renderAdminPackages(); 
+            renderAdminPackageThemes(); 
+        }
 
         function renderAdminDiscounts() {
             const container = document.getElementById('adminDiscountsList');
@@ -1062,39 +970,76 @@ ${t.copyFooterNote}`;
             config.discounts.forEach((disc, index) => {
                 const row = document.createElement('div');
                 row.className = "flex flex-wrap sm:flex-nowrap items-center space-x-2 bg-brandBeige-light p-2.5 rounded-xl border border-brandBeige";
-                row.innerHTML = `
-                    <label class="relative inline-flex items-center cursor-pointer mr-1">
-                        <input type="checkbox" ${disc.enabled ? 'checked' : ''} onchange="config.discounts[${index}].enabled = this.checked; renderAdminDiscounts();" class="sr-only peer">
-                        <div class="w-9 h-5 bg-stone-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brandRed"></div>
-                    </label>
-                    <input type="text" value="${disc.name}" onchange="config.discounts[${index}].name = this.value" class="flex-grow p-1.5 border border-brandBeige rounded-lg text-xs font-bold bg-white ${!disc.enabled ? 'opacity-50' : ''}">
-                    <select onchange="config.discounts[${index}].type = this.value; renderAdminDiscounts();" class="p-1.5 border border-brandBeige rounded-lg text-xs bg-white font-bold">
-                        <option value="fixed" ${disc.type === 'fixed' ? 'selected' : ''}>固定金額 (折$)</option>
-                        <option value="percent" ${disc.type === 'percent' ? 'selected' : ''}>打折比率 (0.9等於9折)</option>
-                    </select>
-                    <input type="number" value="${disc.amount}" onchange="config.discounts[${index}].amount = parseFloat(this.value)" class="w-20 p-1.5 border border-brandBeige rounded-lg text-xs text-right font-bold bg-white">
-                    <button type="button" onclick="config.discounts.splice(${index},1); renderAdminDiscounts();" class="text-red-600 hover:text-red-800 px-1 text-sm"><i class="fa-solid fa-trash-can"></i></button>
-                `;
+                row.innerHTML = `<label class="relative inline-flex items-center cursor-pointer mr-1"><input type="checkbox" ${disc.enabled ? 'checked' : ''} onchange="config.discounts[${index}].enabled = this.checked; renderAdminDiscounts();" class="sr-only peer"><div class="w-9 h-5 bg-stone-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-stone-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-brandRed"></div></label><input type="text" value="${disc.name}" onchange="config.discounts[${index}].name = this.value" class="flex-grow p-1.5 border border-brandBeige rounded-lg text-xs font-bold bg-white ${!disc.enabled ? 'opacity-50' : ''}"><select onchange="config.discounts[${index}].type = this.value; renderAdminDiscounts();" class="p-1.5 border border-brandBeige rounded-lg text-xs bg-white font-bold"><option value="fixed" ${disc.type === 'fixed' ? 'selected' : ''}>固定金額 (折$)</option><option value="percent" ${disc.type === 'percent' ? 'selected' : ''}>打折比率 (0.9等於9折)</option></select><input type="number" value="${disc.amount}" onchange="config.discounts[${index}].amount = parseFloat(this.value)" class="w-20 p-1.5 border border-brandBeige rounded-lg text-xs text-right font-bold bg-white"><button type="button" onclick="config.discounts.splice(${index},1); renderAdminDiscounts();" class="text-red-600 hover:text-red-800 px-1 text-sm"><i class="fa-solid fa-trash-can"></i></button>`;
                 container.appendChild(row);
             });
         }
         function addNewDiscountItem() { config.discounts.push({ id: 'disc_'+Date.now(), name: '新優惠折扣', amount: 100, type: 'fixed', enabled: true }); renderAdminDiscounts(); }
-
-        function renderAdminThemes() {
-            const container = document.getElementById('adminThemesContainer');
+        
+        function renderAdminPackageThemes() {
+            const container = document.getElementById('adminPackageThemesContainer');
             container.innerHTML = '';
-            config.classicThemes.forEach((theme, index) => {
-                const row = document.createElement('div');
-                row.className = "flex items-center space-x-2";
-                row.innerHTML = `
-                    <div class="drag-handle cursor-grab active:cursor-grabbing px-1 text-stone-400 hover:text-brandRed"><i class="fa-solid fa-grip-vertical"></i></div>
-                    <input type="text" value="${theme.name}" onchange="config.classicThemes[${index}].name = this.value" class="flex-grow p-1 border border-brandBeige rounded text-[11px] bg-white">
-                    <button type="button" onclick="config.classicThemes.splice(${index},1); renderAdminThemes();" class="text-red-600 hover:text-red-800 text-xs"><i class="fa-solid fa-trash-can"></i></button>
-                `;
-                container.appendChild(row);
+            if (!config.packageThemes) config.packageThemes = {};
+
+            config.packages.forEach(pkg => {
+                if (!config.packageThemes[pkg.id]) {
+                    config.packageThemes[pkg.id] = [];
+                }
+                const themes = config.packageThemes[pkg.id];
+
+                const block = document.createElement('div');
+                block.className = "bg-white p-3.5 rounded-xl border border-stone-200 space-y-2.5";
+                
+                let themesHtml = `<div class="flex justify-between items-center border-b pb-1.5"><span class="font-bold text-xs text-brandRed">【${pkg.name}】的拍攝主題清單</span><button type="button" onclick="addNewPackageTheme('${pkg.id}')" class="text-[10px] bg-brandRed text-white px-2 py-1 rounded hover:bg-brandRed-dark">+ 新增主題</button></div>`;
+                
+                if (themes.length === 0) {
+                    themesHtml += `<div class="text-xs text-stone-400 italic">尚無拍攝主題</div>`;
+                } else {
+                    themesHtml += `<div class="space-y-1.5 themes-sortable-list" data-pkg-id="${pkg.id}">`;
+                    themes.forEach((theme, tIdx) => {
+                        themesHtml += `
+                            <div class="flex items-center space-x-2 bg-brandBeige-light p-2 rounded-lg border border-brandBeige">
+                                <div class="drag-handle cursor-grab active:cursor-grabbing px-1 text-stone-400 hover:text-brandRed"><i class="fa-solid fa-grip-vertical"></i></div>
+                                <input type="text" value="${theme.name}" onchange="config.packageThemes['${pkg.id}'][${tIdx}].name = this.value" class="flex-grow p-1 border border-brandBeige rounded text-xs bg-white font-medium">
+                                <button type="button" onclick="config.packageThemes['${pkg.id}'].splice(${tIdx},1); renderAdminPackageThemes();" class="text-red-600 hover:text-red-800 text-xs px-1"><i class="fa-solid fa-trash-can"></i></button>
+                            </div>
+                        `;
+                    });
+                    themesHtml += `</div>`;
+                }
+                block.innerHTML = themesHtml;
+                container.appendChild(block);
             });
+
+            setTimeout(() => {
+                document.querySelectorAll('.themes-sortable-list').forEach(el => {
+                    const pkgId = el.getAttribute('data-pkg-id');
+                    new Sortable(el, {
+                        animation: 150,
+                        handle: '.drag-handle',
+                        onEnd: (evt) => {
+                            const arr = config.packageThemes[pkgId];
+                            const item = arr.splice(evt.oldIndex, 1)[0];
+                            arr.splice(evt.newIndex, 0, item);
+                            renderAdminPackageThemes();
+                        }
+                    });
+                });
+            }, 50);
         }
-        function addNewTheme() { config.classicThemes.push({ id: 'theme_'+Date.now(), name: '新拍攝主題' }); renderAdminThemes(); }
+
+        function addNewPackageTheme(pkgId) {
+            if (!config.packageThemes[pkgId]) config.packageThemes[pkgId] = [];
+            const newThemeId = 'theme_' + Date.now();
+            config.packageThemes[pkgId].push({ id: newThemeId, name: '新拍攝主題' });
+            if (config.addons) {
+                config.addons.forEach(a => {
+                    if (!a.allowedThemes) a.allowedThemes = {};
+                    a.allowedThemes[newThemeId] = true;
+                });
+            }
+            renderAdminPackageThemes();
+        }
 
         function renderAdminTimeSlots() {
             const container = document.getElementById('adminTimeSlotsContainer');
@@ -1102,66 +1047,37 @@ ${t.copyFooterNote}`;
             config.timeSlots.forEach((slot, index) => {
                 const row = document.createElement('div');
                 row.className = "flex items-center space-x-2";
-                row.innerHTML = `
-                    <div class="drag-handle cursor-grab active:cursor-grabbing px-1 text-stone-400 hover:text-brandRed"><i class="fa-solid fa-grip-vertical"></i></div>
-                    <input type="text" value="${slot}" onchange="config.timeSlots[${index}] = this.value" class="flex-grow p-1 border border-brandBeige rounded text-[11px] bg-white text-center font-mono">
-                    <button type="button" onclick="config.timeSlots.splice(${index},1); renderAdminTimeSlots();" class="text-red-600 hover:text-red-800 text-xs"><i class="fa-solid fa-trash-can"></i></button>
-                `;
+                row.innerHTML = `<div class="drag-handle cursor-grab active:cursor-grabbing px-1 text-stone-400 hover:text-brandRed"><i class="fa-solid fa-grip-vertical"></i></div><input type="text" value="${slot}" onchange="config.timeSlots[${index}] = this.value" class="flex-grow p-1 border border-brandBeige rounded text-[11px] bg-white text-center font-mono"><button type="button" onclick="config.timeSlots.splice(${index},1); renderAdminTimeSlots();" class="text-red-600 hover:text-red-800 text-xs"><i class="fa-solid fa-trash-can"></i></button>`;
                 container.appendChild(row);
             });
         }
         function addNewTimeSlot() { config.timeSlots.push("19:00~20:00"); renderAdminTimeSlots(); }
-
+        
         function renderAdminTexts() {
             const container = document.getElementById('adminTextsContainer');
             container.innerHTML = '';
             Object.keys(config.uiTexts).forEach(key => {
                 const row = document.createElement('div');
                 row.className = "flex flex-col mb-1 bg-brandBeige-light p-2 rounded-lg border border-brandBeige";
-                row.innerHTML = `
-                    <label class="font-bold text-stone-600 mb-1 text-[10px] break-all">${key}</label>
-                    <textarea rows="1" onchange="config.uiTexts['${key}'] = this.value" class="w-full p-1.5 border border-brandBeige rounded text-xs bg-white resize-y font-medium text-brandRed leading-tight">${config.uiTexts[key]}</textarea>
-                `;
+                row.innerHTML = `<label class="font-bold text-stone-600 mb-1 text-[10px] break-all">${key}</label><textarea rows="1" onchange="config.uiTexts['${key}'] = this.value" class="w-full p-1.5 border border-brandBeige rounded text-xs bg-white resize-y font-medium text-brandRed leading-tight">${config.uiTexts[key]}</textarea>`;
                 container.appendChild(row);
             });
         }
-
+        
         function saveAdminSettings() {
-            config.extraPersonPrice = parseFloat(document.getElementById('admExtraPersonPrice').value) || 0;
-            config.petPrice = parseFloat(document.getElementById('admPetPrice').value) || 0;
-            
-            // Re-sync UI with new texts & configs locally
-            applyI18n();
-            renderTimeSlotsDropdown();
-            renderDiscountSelect();
-            updateCalculation();
-            
+            applyI18n(); 
+            renderTimeSlotsDropdown(); 
+            renderClassicThemes();
+            renderDiscountSelect(); 
+            updateCalculation(); 
             closeAdminModal();
-            
-            // Check if Firebase hook is available and save
             if (window.saveConfigToFirebase) {
                 showToast('正在將設定儲存至雲端...', false);
-                window.saveConfigToFirebase(config).then(success => {
-                    if (success) {
-                        showToast('所有設定已成功儲存至雲端並生效！', false);
-                    } else {
-                        showToast('雲端儲存失敗，但已在本地生效，請稍後再試。', true);
-                    }
-                });
-            } else {
-                showToast('所有設定已成功儲存並生效！(僅本地)', false);
-            }
+                window.saveConfigToFirebase(config).then(success => { if (success) { showToast('所有設定已成功儲存至雲端並生效！', false); } else { showToast('雲端儲存失敗，但已在本地生效', true); } });
+            } else { showToast('所有設定已成功儲存並生效！(僅本地)', false); }
         }
-
-        function resetToDefaults() {
-            config = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
-            showAdminDashboard();
-            applyI18n();
-            renderTimeSlotsDropdown();
-            renderDiscountSelect();
-            updateCalculation();
-            showToast('已還原為初始預設設定（未上傳雲端）', false);
-        }
+        
+        function resetToDefaults() { config = JSON.parse(JSON.stringify(DEFAULT_CONFIG)); showAdminDashboard(); applyI18n(); renderTimeSlotsDropdown(); renderClassicThemes(); renderDiscountSelect(); updateCalculation(); showToast('已還原為初始預設設定', false); }
     </script>
 </body>
 </html>
